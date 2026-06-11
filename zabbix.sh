@@ -51,6 +51,7 @@ sudo systemctl enable --now docker containerd
 echo "[7/7] Levantando el contenedor de Zabbix Proxy..."
 sudo docker rm -f zabbix-proxy-sqlite3 || true
 sudo docker run --name zabbix-proxy-sqlite3 \
+  --network host \
   -e ZBX_HOSTNAME="$ZBX_HOSTNAME" \
   -e ZBX_SERVER_HOST=192.168.10.66 \
   --restart=always --init -d \
